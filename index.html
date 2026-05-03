@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Ahmad AI | Sovereign Zenith</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="sidebar">
+    <div class="side-header">NEURAL ARCHIVE</div>
+    <div id="history-list"></div>
+    <div style="padding: 20px;">
+        <button onclick="purge()" id="purge-btn">PURGE MEMORY</button>
+    </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleSide()"></div>
+
+<div id="main">
+    <canvas id="particle-canvas"></canvas>
+    <header>
+        <div onclick="toggleSide()" class="menu-trigger">☰</div>
+        <div class="brand"><b>AHMAD AI</b><span>SOVEREIGN ZENITH</span></div>
+        <div onclick="newChat()" class="new-chat-btn">⊕</div>
+    </header>
+
+    <div id="chat-flow">
+        <div id="landing">
+            <p class="greet">Greetings.</p>
+            <p class="headline">Welcome to Ahmad AI — <br>Neural core active.</p>
+            <div class="suggestion-list">
+                <div class="chip" onclick="quick('🧠 Analyze session intent...')"><span>🧠</span> Analyze intent</div>
+                <div class="chip" onclick="quick('⚡ Optimize current logic.')"><span>⚡</span> Optimize logic</div>
+                <div class="chip" onclick="quick('🎨 Initiate creative synthesis.')"><span>🎨</span> Creative synthesis</div>
+                <div class="chip" onclick="quick('📚 Deep learning search.')"><span>📚</span> Deep learning</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="status"></div>
+        <div class="dock">
+            <input type="file" id="visionIn" hidden accept="image/*" onchange="handleVision()">
+            <button class="icon-btn" onclick="document.getElementById('visionIn').click()">+</button>
+            <button class="icon-btn" id="mic-btn" onclick="startVoiceInput()">🎤</button>
+            <input type="text" id="userInput" placeholder="Ask Ahmad AI..." inputmode="text" autocomplete="off">
+            <button class="send-btn" onclick="execute()">➤</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
