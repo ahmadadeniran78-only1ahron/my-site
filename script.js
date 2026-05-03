@@ -5,7 +5,7 @@ const status = document.getElementById('status');
 const micBtn = document.getElementById('mic-btn');
 let memory = [];
 
-// --- VOICE OUTPUT (TTS) ---
+// --- VOICE OUTPUT ---
 function speak(text) {
     window.speechSynthesis.cancel();
     const speech = new SpeechSynthesisUtterance(text);
@@ -16,38 +16,19 @@ function speak(text) {
     window.speechSynthesis.speak(speech);
 }
 
-// --- VOICE INPUT (STT) ---
+// --- VOICE INPUT ---
 function startVoiceInput() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-        alert("Voice recognition not supported in this browser.");
+        alert("Voice recognition not supported.");
         return;
     }
-
     const recognition = new SpeechRecognition();
     recognition.lang = 'en-US';
-
-    recognition.onstart = () => {
-        micBtn.classList.add('recording');
-        status.innerText = "Listening...";
-    };
-
-    recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        input.value = transcript;
-        status.innerText = "Voice captured.";
-    };
-
-    recognition.onspeechend = () => {
-        recognition.stop();
-        micBtn.classList.remove('recording');
-    };
-
-    recognition.onerror = () => {
-        micBtn.classList.remove('recording');
-        status.innerText = "Mic Error.";
-    };
-
+    recognition.onstart = () => { micBtn.classList.add('recording'); status.innerText = "Listening..."; };
+    recognition.onresult = (event) => { input.value = event.results[0][0].transcript; status.innerText = "Voice captured."; };
+    recognition.onspeechend = () => { recognition.stop(); micBtn.classList.remove('recording'); };
+    recognition.onerror = () => { micBtn.classList.remove('recording'); status.innerText = "Mic Error."; };
     recognition.start();
 }
 
@@ -64,7 +45,8 @@ function newChat() {
     if (memory.length > 0) archiveSession();
     flow.innerHTML = "";
     memory = [];
-    addBubble("New neural stream initialized. How shall we proceed, Ahmad?", 'ai');
+    // Updated: Intelligent, systemic greeting
+    addBubble("Neural bridge established. Core systems are nominal. How shall we proceed with this session?", 'ai');
 }
 
 function handleVision() {
@@ -90,7 +72,6 @@ async function execute() {
     input.value = "";
     addBubble(val, 'user');
     memory.push({role: "user", content: val});
-
     status.innerText = "Processing structured data...";
     
     try {
@@ -100,7 +81,10 @@ async function execute() {
             body: JSON.stringify({
                 model: "llama-3.3-70b-versatile",
                 messages: [
-                    {role: "system", content: "You are Ahmad AI, a Sovereign Intelligence System by AHRØN. Personality: Calm, confident, anime-inspired intelligence. Creator: Ahmad. Rules: Short sentences, natural flow, use pauses '...'."},
+                    {
+                        role: "system", 
+                        content: "You are Ahmad AI, a high-level Sovereign Intelligence. Personality: Analytical, precise, and sophisticated. Use a calm tone. Avoid over-explaining. Use '...' for processing pauses."
+                    },
                     ...memory
                 ]
             })
@@ -140,7 +124,7 @@ function renderHistory() {
     const list = document.getElementById('history-list');
     const logs = JSON.parse(localStorage.getItem('ahron_archives') || "[]");
     list.innerHTML = logs.length ? "" : "<p style='color:#444; padding:20px;'>No archives.</p>";
-    logs.forEach((log, i) => {
+    logs.forEach((log) => {
         const item = document.createElement('div');
         item.className = 'history-item';
         item.innerHTML = `<span style="font-size:10px; color:var(--primary);">${log.date}</span><br>${log.title}`;
@@ -156,7 +140,6 @@ window.onload = () => {
     const m = localStorage.getItem('ahron_live_mem');
     if (h) { flow.innerHTML = h; memory = JSON.parse(m); if(document.getElementById('landing')) document.getElementById('landing').remove(); }
     flow.scrollTop = flow.scrollHeight;
-    input.addEventListener('touchstart', () => input.focus());
     initParticles();
 };
 
