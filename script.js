@@ -1,4 +1,4 @@
-const KEY = "YOUR_GROQ_API_KEY_HERE";
+const KEY = "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";
 const flow = document.getElementById('chat-flow');
 const input = document.getElementById('userInput');
 const status = document.getElementById('status');

@@ -12,7 +12,7 @@
     <div class="side-header">NEURAL ARCHIVE</div>
     <div id="history-list"></div>
     <div style="padding: 20px;">
-        <button onclick="purge()" id="purge-btn">PURGE MEMORY</button>
+        <button onclick="purge()" style="width:100%; padding:14px; background:rgba(255,50,50,0.1); border:1px solid #ff3232; color:#ff3232; border-radius:12px; font-weight:bold;">PURGE MEMORY</button>
     </div>
 </div>
 
@@ -21,9 +21,9 @@
 <div id="main">
     <canvas id="particle-canvas"></canvas>
     <header>
-        <div onclick="toggleSide()" class="menu-trigger">☰</div>
-        <div class="brand"><b>AHMAD AI</b><span>SOVEREIGN ZENITH</span></div>
-        <div onclick="newChat()" class="new-chat-btn">⊕</div>
+        <div onclick="toggleSide()" style="font-size:24px; cursor:pointer;">☰</div>
+        <div class="brand" style="text-align:center;"><b>AHMAD AI</b><span>SOVEREIGN ZENITH</span></div>
+        <div onclick="newChat()" style="font-size:22px; cursor:pointer; color:var(--glow);">⊕</div>
     </header>
 
     <div id="chat-flow">
@@ -40,7 +40,7 @@
     </div>
 
     <div id="footer">
-        <div id="status"></div>
+        <div id="status" style="font-size:10px; color:var(--primary); margin-bottom:8px; font-family:monospace; height:12px;"></div>
         <div class="dock">
             <input type="file" id="visionIn" hidden accept="image/*" onchange="handleVision()">
             <button class="icon-btn" onclick="document.getElementById('visionIn').click()">+</button>
