@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Ahmad AI | Sovereign Zenith</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,7 +14,7 @@
     <div class="side-header">NEURAL ARCHIVE</div>
     <div id="history-list"></div>
     <div style="padding: 20px;">
-        <button onclick="purge()" style="width:100%; padding:14px; background:rgba(255,50,50,0.1); border:1px solid #ff3232; color:#ff3232; border-radius:12px; font-weight:bold;">PURGE MEMORY</button>
+        <button onclick="purge()" style="width:100%; padding:14px; background:rgba(255,50,50,0.1); border:1px solid #ff3232; color:#ff3232; border-radius:12px; font-weight:bold; cursor:pointer;">PURGE MEMORY</button>
     </div>
 </div>
 
@@ -20,10 +22,11 @@
 
 <div id="main">
     <canvas id="particle-canvas"></canvas>
+    
     <header>
-        <div onclick="toggleSide()" style="font-size:24px; cursor:pointer;">☰</div>
+        <div onclick="toggleSide()" style="font-size:24px; cursor:pointer; padding: 10px;">☰</div>
         <div class="brand" style="text-align:center;"><b>AHMAD AI</b><span>SOVEREIGN ZENITH</span></div>
-        <div onclick="newChat()" style="font-size:22px; cursor:pointer; color:var(--glow);">⊕</div>
+        <div onclick="newChat()" style="font-size:22px; cursor:pointer; color:#4DA3FF; padding: 10px;">⊕</div>
     </header>
 
     <div id="chat-flow">
@@ -40,7 +43,7 @@
     </div>
 
     <div id="footer">
-        <div id="status" style="font-size:10px; color:var(--primary); margin-bottom:8px; font-family:monospace; height:12px;"></div>
+        <div id="status" style="font-size:10px; color:#4DA3FF; margin-bottom:8px; font-family:monospace; height:12px; text-transform:uppercase; letter-spacing:1px;"></div>
         <div class="dock">
             <input type="file" id="visionIn" hidden accept="image/*" onchange="handleVision()">
             <button class="icon-btn" onclick="document.getElementById('visionIn').click()">+</button>
